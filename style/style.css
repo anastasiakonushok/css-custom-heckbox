@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /*Флексы выравниваются по центру строки. */
+    align-items: center; /*Флексы выравниваются по линии поперечной оси. */
+    min-height: 100vh; /* Задаёт минимальную высоту элемента,'квивалентно 1% высоты окна браузера.*/
+}
+input[type='checkbox']{
+    visibility: hidden;/*Элемент становится невидимым или правильней сказать, полностью прозрачным, поскольку он продолжает участвовать в форматировании страницы.*/
+    display: none;
+}
+.check {
+    position: relative;/*Относительное позиционирование. Положение элемента устанавливается относительно его исходного места.*/
+    display: block;
+    width: 120px;
+    height: 60px;
+    background: #c9f01e;
+    cursor: pointer;/*Устанавливает форму курсора, когда он находится в пределах элемента. Вид курсора зависит от операционной системы и установленных параметров.*/
+    border-radius:50px ;/*Устанавливает радиус скругления уголков рамки. */
+    overflow: hidden;/*Отображается только область внутри элемента, остальное будет скрыто.*/
+    transition: ease-in 0.6s;/*ease-in-анимация медленно начинается, к концу ускоряется.*/
+}
+input[type='checkbox']:checked ~ .check {/*Псевдокласс :checked применяется к элементам интерфейса, таким как переключатели (checkbox),*/
+    background-color: #ffffff;
+    box-shadow: 0 0 0 1200px #c9f01e;
+}
+.check::before {/*Псевдоэлемент ::before применяется для отображения контента до содержимого элемента, к которому он добавляется. */
+    content:'';/*Свойство content позволяет вставлять генерируемое содержание в текст веб-страницы, которое первоначально в тексте отсутствует.*/
+    position: absolute;/**/
+    top:5px;/*отступ от края*/
+    left: 5px;
+    background:#ffffff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;/*сглаживате углы*/
+    transition: 0.5s;
+}
+input[type='checkbox']:checked ~ .check::before {/**/
+
+    transform: translateX(-50px);/*Сдвигает элемент по горизонтали на указанное значение. Положительное значение сдвигает вправо, отрицательное влево.*/
+}
+.check::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #c9f01e;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: 0.6s;
+    transform: translateX(50px);
+
+}
+input[type='checkbox']:checked ~ .check::after {/**/
+    transform: translateX(0px);
+}
